@@ -1,37 +1,41 @@
-# PROGRAMAS UTILES DE TERMINA (youtube-dl, pdftk, ffmpeg, convert)
+# DOKERIZANDO PROGRAMAS UTILES DE TERMINAL
+##      (youtube-dl, pdftk, ffmpeg, convert)
 
-Con el tiempo de uso de linux, se va cogiendo cariño al termina, y he ido recopilando algunos programas que resulta muy utile en determinadas ocasiones.
+Con el tiempo de uso de linux, se va cogiendo cariño al terminal, y he ido recopilando algunos programas que resulta muy utiles en determinadas ocasiones.
 
-Al cambiar de ordenardor me he dado cuenta que hay que volver a instalar todo, y sobre todo programas que no se usan mucho, pero que son necesarios en determinadas ocasiones.
+Al cambiar de ordenardor me he dado cuenta que hay que volver a instalar todo, y sobre todo programas que no se usan mucho, pero que son necesarios en determinadas ocasiones, buscar una manera de tenerlos pero no tener que volver a instalarlos.
 
-por ello una solución ideal es docker tener un contenedor con todos esto programas, con la ventaja de tenemos disponibles en cualquier momento para suarlos en cualquier equipo, no ocupan espacio..
+Por ello una solución ideal es **Docker** tener un contenedor con todos estos programas, con la ventaja de tenemos disponibles en cualquier momento para suarlos en cualquier equipo, no ocupan espacio de disco, no generan dependencias, ...
 
-INSTRUCCIONES
+# INSTRUCCIONES
 
-creacion del contenedor
+Creación de la imagen docker
 
     docker build -t crea/util .
 
-ya podemos usarpdftk
+Y ya podemos correr y usar el contenedor
 
     docker run --rm --user -v $PWD:/downloads crea/util [pdftk] [youtube-dl] [ffmpeg] [convert]
 
-ejemplo
+ejemplo (crear una git amimada)
 
     docker run --rm -v $PWD:/downloads crea/util convert -layers OptimizePlus -delay 200 -size 260x360 -quality 99 *.png -loop 0 ps1.gif
 
 
-Para su uso mas comodo podemos cargar los comandos en el la sesion actual de shell con el comando
+Para su uso más comodo podemos cargar los comandos en el la sesion actual de shell con el comando
 
     source .dockerutil
 
+con el uso de este comando conseguimos cargar los programas como si los tubiesemos instalados en nuestro ordenador durante la sesion del terminal. Tambien esta la posiblidas de generar alias si hacemos uso mas habitual de esto programas.
+
+
+# UTILIDADES
+
 Algunas combinaciones mas habituales de uso de estos programas
 
-#UTILIDADES
+# youtube'dl
 
-#youtube'dl
-
-es una aplicación que nos permite descargar video de youtube
+Es una aplicación que nos permite descargar video de youtube
 
     youtube-dl http://youtube.com/el-video-que-sea
 
@@ -43,11 +47,11 @@ Lista de distrubucion
 
     youtube-dl -t -f18 https://www.youtube.com/playlist?list=PL53398BADD9369A3F
 
-Convertir a MP3
+Descargar y convertir a MP3
 
     youtube-dl -x --audio-format mp3 http://youtube.com/el-video-que-sea
 
-#IMAGENES
+# IMAGENES
 
 ## Crear una git animada a partir de varias imagenes
 
