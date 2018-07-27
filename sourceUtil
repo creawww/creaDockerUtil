@@ -2,6 +2,7 @@
 # Bash wrappers for docker run commands
 convert(){
 	docker run --rm \
+                --user $UID:$UID \
 		-v $PWD:/downloads \
 		crea/util \
 		convert "$@"
@@ -9,6 +10,7 @@ convert(){
 
 pdftk(){
 	docker run --rm \
+                --user $UID:$UID \
 		-v $PWD:/downloads \
 		crea/util \
 		pdftk "$@"
@@ -16,13 +18,15 @@ pdftk(){
 
 youtube-dl(){
 	docker run --rm \
-		-v $PWD:/downloads \
+                --user $UID:$UID \
+                -v $PWD:/downloads \
 		crea/util \
 		youtube-dl "$@"
 }
 
 ffmpeg(){
 	docker run --rm \
+                --user $UID:$UID \
 		-v $PWD:/downloads \
 		crea/util \
 		ffmpeg "$@"
